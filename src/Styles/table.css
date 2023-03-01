@@ -1,0 +1,15 @@
+thead tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-container {
+    min-height: 520px;
+}
+
+.table-container .table {
+    margin-bottom: 10px;
+}

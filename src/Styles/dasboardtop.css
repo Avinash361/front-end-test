@@ -1,0 +1,40 @@
+
+.dashboardtop{
+    padding: 25px 50px;
+}
+.dashboardtop .text1 {
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.dashboardtop .text2 {
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.dashboardtop .text2 span {
+    font-weight: 300;
+}
+
+.dashboard .col-4 {
+    border-right: 2px solid #BFBEBE;
+    height: 80vh;
+    padding:0px 50px 0px 20px;
+
+}
+.dashboard .col-8{
+    padding: 10px 110px;
+}
+@media (max-width:800px){
+    .dashboardtop{
+        padding: 25px 0px 0px 10px;
+    }
+}
