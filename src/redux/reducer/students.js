@@ -1,10 +1,10 @@
-import { STUDENT_TABLE_SUCCESS, STUDENT_TABLE_FAIL } from "../action/type";
+import { STUDENT_TABLE_SUCCESS, STUDENT_TABLE_FAIL,STUDENT_SEARCH_SUCCESS } from "../action/type";
 
 
 const initialState = {
-    payload:[{
+    data: [{
         "name": "Apple",
-        "carbohydrates": "20",
+        "carbohydrates": "10",
         "protein": "3",
         "calories": "10",
         "fat": "20",
@@ -12,7 +12,7 @@ const initialState = {
     },
     {
         "name": "Mango",
-        "carbohydrates": "21",
+        "carbohydrates": "11",
         "protein": "4",
         "calories": "11",
         "fat": "21",
@@ -20,7 +20,7 @@ const initialState = {
     },
     {
         "name": "Banana",
-        "carbohydrates": "22",
+        "carbohydrates": "7",
         "protein": "35",
         "calories": "13",
         "fat": "23",
@@ -28,7 +28,7 @@ const initialState = {
     },
     {
         "name": "Pineapple",
-        "carbohydrates": "20",
+        "carbohydrates": "5",
         "protein": "32",
         "calories": "120",
         "fat": "10",
@@ -36,24 +36,30 @@ const initialState = {
     },
     {
         "name": "Guava",
-        "carbohydrates": "70",
+        "carbohydrates": "15",
         "protein": "13",
         "calories": "10",
         "fat": "20",
         "sugar": "15",
     },
-    
- ]
+
+    ],
+    swapfood:[],
 }
 
 export default function (state = initialState, action) {
     const { type, payload } = action;
-
+   
     switch (type) {
         case STUDENT_TABLE_SUCCESS:
             return {
                 ...state,
-                payload,
+                data:payload,
+            };
+        case STUDENT_SEARCH_SUCCESS:
+            return {
+                ...state,
+                swapfood:payload,
             };
         case STUDENT_TABLE_FAIL:
             return {

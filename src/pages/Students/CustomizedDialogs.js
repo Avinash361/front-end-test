@@ -4,13 +4,12 @@ import { styled } from '@mui/material/styles';
 import { DialogActions, DialogTitle, Dialog, Button, DialogContent } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import { useDispatch } from 'react-redux';
-import { AddBoard, GetBoard, UpdateBoard, } from '../../redux/action/appsetting';
 import { AddData, getStudentsData, UpdateStudentProfile } from '../../redux/action/students';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-    minWidth: "550px"
+    minWidth: "600px"
   },
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),

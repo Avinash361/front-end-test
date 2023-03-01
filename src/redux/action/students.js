@@ -1,4 +1,4 @@
-import { STUDENT_TABLE_SUCCESS, STUDENT_TABLE_FAIL } from "./type";
+import { STUDENT_TABLE_SUCCESS, STUDENT_SEARCH_SUCCESS } from "./type";
 import userService from '../services/userService';
 import { updateSpineer } from "./Spineer";
 import { Diet } from "./Diet";
@@ -85,10 +85,29 @@ export const DeleteData = (inputs) => (dispatch) => {
 }
 
 export const SearchData = (inputs) => (dispatch) => {
-    console.log(inputs.carbohydrates);
-    Diet.map((item) => {
-        if (item.nutritions.calories >= inputs.calories)
-            console.log(item);
-    })
+    console.log(inputs);
+    // Diet.map((item) => {
+    //     if (item.nutritions.calories >= inputs.calories)
+    //         console.log(item);
+    // })
+    const result = [];
+
+    // iterate over each object in the array
+    for (let i = 0; i < Diet.length; i++) {
+        const item = Diet[i];
+
+        const diff = Math.abs(item.nutritions.carbohydrates- inputs.calories);
+        const percentDiff = diff / inputs.calories * 100;
+       
+        // check if percentage difference is less than or equal to 5%
+        if (percentDiff <= 5) {
+            result.push(item);
+        }
+        dispatch({
+            type: STUDENT_SEARCH_SUCCESS,
+            payload: result,
+        });
+    }
+   
 
 }

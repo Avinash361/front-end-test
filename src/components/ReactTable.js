@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import { useEffect } from 'react';
 import '../Styles/table.css'
 function ReactTable(props) {
-console.log("D",props.data);
     const columns = useMemo(() => props.column, [props.column]);
     const data = React.useMemo(() => props.data, [props.data.length])
 

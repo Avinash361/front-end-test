@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import DashboardTop from '../../components/DashboardTop';
 import ReactTable from '../../components/ReactTable';
-import { AddData, DeleteData, getStudentsData, SearchData } from '../../redux/action/students';
+import { getStudentsData, SearchData } from '../../redux/action/students';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpineer } from '../../redux/action/Spineer';
 import CustomizedDialogs from './CustomizedDialogs';
-import Form from './Form';
-import { GetBoard, GetClass, GetMedium, GetSubject } from '../../redux/action/appsetting';
-
 
 function Students() {
 
@@ -39,77 +36,73 @@ function Students() {
         {
             Header: "",
             accessor: 'Edit',
-            Cell: (row) => (<><img src="/image/delete.png" alt="edit icon" onClick={() => handleDelete(row.row.original)} /><img src="/image/edit.png" alt="edit icon" onClick={() => handleUpdate(row.row.original)} /></>)
+            Cell: (row) => (<><i class="fa fa-exchange mx-4" aria-hidden="true" onClick={()=>handleSearch(row.row.original)}></i></>)
+        },
+
+    ]
+    const Columns2 = [
+        {
+            Header: "Food Name",
+            accessor: 'name'
+        },
+        {
+            Header: "Carbohydrates",
+            accessor: 'nutritions.carbohydrates'
+        },
+        {
+            Header: "Protein",
+            accessor: 'nutritions.protein'
+        },
+        // {
+        //     Header: "Calories",
+        //     accessor: 'nutritions.calories'
+        // },
+        // {
+        //     Header: "Fat",
+        //     accessor: 'fat',
+        // },
+        // {
+        //     Header: "Sugar",
+        //     accessor: 'sugar'
+        // },
+        {
+            Header: "",
+            accessor: 'Edit',
+            Cell: (row) => (<i class="fa fa-exchange" aria-hidden="true" ></i>)
         },
 
     ]
     const dispatch = useDispatch();
-    const myState = useSelector((state) => state.students.payload);
-    console.log("M",myState);
+    const food = useSelector((state) => state.students.data);
+    const swapfood = useSelector((state) => state.students.swapfood);
+
+
     const [open, setOpen] = useState(false);
     const [input, setInput] = useState({});
 
-    const handleAdd = (e) => {
-        setInput(values => ({
-            ...values,
-            type: "Add",
-            name: "",
-            carbohydrates: "",
-            protein: "",
-            calories: "",
-            fat: "",
-            sugar: "",
-        }))
 
-        setOpen(true);
-
-    }
-    const handleUpdate = (e) => {
-        setInput(values => ({
-            ...values,
-            type: "Update",
-            name: e.name,
-            carbohydrates: e.carbohydrates,
-            protein: e.protein,
-            calories: e.calories,
-            fat: e.fat,
-            sugar: e.sugar,
-
-        }))
-        setOpen(true);
-
-    }
     const handleSearch = (e) =>{
         setInput(values => ({
             ...values,
             type: "Search",
         }))
+        setOpen(true);
+        dispatch(SearchData(e))
     }
-    const handleDelete = (e) => {
-        setInput(values => ({
-            ...values,
-            type: "Delete",
-        }))
 
-        dispatch(DeleteData(e));
-
-    }
     useEffect(() => {
         dispatch(getStudentsData());
-    }, [myState])
+    }, [food])
     return (
         <>
             <CustomizedDialogs name="Student Profile" input={input} open={open} setOpen={setOpen}>
-                <Form input={input} setInput={setInput}/>
+                <ReactTable column={Columns2} data={swapfood} />
             </CustomizedDialogs>
             <DashboardTop Heading="Patient Data" subHeading="Basic Info" />
             <div className='container students'>
                 <div className="row">
-                    <div><button variant="contained" className='btn m-2 ' style={{ float: "right" }} onClick={handleAdd}>Add New</button></div>
-                </div>
-                <div className="row">
                     <div className="col-12">
-                        <ReactTable column={Columns} data={myState} />
+                        <ReactTable column={Columns} data={food} />
                     </div>
                 </div>
             </div>
