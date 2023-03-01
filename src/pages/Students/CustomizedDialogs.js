@@ -2,9 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import { DialogActions, DialogTitle, Dialog, Button, DialogContent } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import { useDispatch } from 'react-redux';
-import { AddData, getStudentsData, UpdateStudentProfile } from '../../redux/action/students';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -32,10 +29,8 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function CustomizedDialogs(props) {
-  const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(AddData(props.input));
     props.setOpen(false);
   }
 
@@ -54,7 +49,7 @@ export default function CustomizedDialogs(props) {
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleSubmit}>
-            Add
+            Close
           </Button>
         </DialogActions>
       </BootstrapDialog>

@@ -23,19 +23,17 @@ function ReactTable(props) {
     } = tableInstance
 
     const { pageSize } = state;
-    useEffect(()=>{
-        setPageSize(5);
-    },[])
+
     return (
         <>
             <div id="table-box">
-                <div className="col px-4">
+                {/* <div className="col px-4">
                     <label className='text-muted text2 px-2'>Show </label>
                     <select value={pageSize} onChange={e => setPageSize(Number(e.target.value))}>
-                        {[5, 10].map((pageSize,index) => (<>show<option value={pageSize} key={index}> {pageSize}</option>Entries</>))}
+                        {[10,15,20].map((pageSize,index) => (<>show<option value={pageSize} key={index}> {pageSize}</option>Entries</>))}
                     </select>
                     <label className='text-muted text2 px-1'> Entries</label>
-                </div>
+                </div> */}
 
                 <TableContainer component={Paper} className="table-container my-3">
                     <table className='table' {...getTableProps()}>
