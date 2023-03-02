@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import DashboardTop from '../../components/DashboardTop';
 import ReactTable from '../../components/ReactTable';
-import { AddData, DeleteData, replace, SearchData } from '../../redux/action/students';
+import { AddData, DeleteData, getCurrentDiet, replace, SearchData } from '../../redux/action/students';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSpineer } from '../../redux/action/Spineer';
 import CustomizedDialogs from './CustomizedDialogs';
@@ -84,9 +84,12 @@ function Students() {
     ]
     const dispatch = useDispatch();
     const currentDiets = useSelector((state) => state.students.currentDiets);
+    const state = useSelector((state) => state); 
+ 
+
     const allDiets = useSelector((state) => state.students.allDiets);
     const swapfood = useSelector((state) => state.students.swapfood);
-    console.log("Swapfood",swapfood);
+    console.log("Local",localStorage.getItem("currentDiets"));
 
     const [open, setOpen] = useState(false);
     const [input, setInput] = useState({});
@@ -96,20 +99,28 @@ function Students() {
         setOpen(true);
         setInput(values => ({
             ...values,
-            type: "search",
+            type: "Swap",
             food:e,
         }))
         dispatch(SearchData(e))
     }
 
     const handleReplace = (e) =>{
+  
+  
+        dispatch(DeleteData(input.food)).then(()=>{
+            dispatch(getCurrentDiet());
+        })
+    
+        dispatch(AddData(e)).then(()=>{
+            dispatch(getCurrentDiet());
+        });
         setInput(values => ({
             ...values,
             type: "replace",
         }))
-        handleDelete(input.food);
-        handleAdd(e);
         setOpen(false);
+        dispatch(getCurrentDiet());
     }
 
     const handleDelete = (e) =>{
@@ -117,33 +128,41 @@ function Students() {
             ...values,
             type: "delete",
         }))
-        dispatch(DeleteData(e))
+        dispatch(DeleteData(e)).then(()=>{
+            dispatch(getCurrentDiet());
+        })
         setOpen(false);
     }
     const handleAddPopup = (e) =>{
         setInput(values => ({
             ...values,
-            type: "add",
+            type: "Add",
         }))
         setOpen(true);
     }
     const handleAdd = (e) =>{
         setInput(values => ({
             ...values,
-            type: "add",
+            type: "Add",
         }))
-        dispatch(AddData(e));
+        
+        dispatch(AddData(e)).then(()=>{
+            dispatch(getCurrentDiet());
+        });
     }
+    useEffect(()=>{
+        dispatch(getCurrentDiet());
+    },[localStorage.getItem("currentDiets")])
  
     return (
         <>
             <CustomizedDialogs name="Student Profile" input={input} open={open} setOpen={setOpen}>
                 {
-                    input.type==="add"?   <ReactTable column={Columns2} data={allDiets} />: <ReactTable column={Columns3} data={swapfood} />
+                    input.type==="Add"?   <ReactTable column={Columns2} data={allDiets} />: <ReactTable column={Columns3} data={swapfood} />
                 }
              
             </CustomizedDialogs>
-            <DashboardTop Heading="Patient Diet" subHeading="Basic Info" />
+            <DashboardTop Heading="Patient Diet" subHeading="Diet Plan" />
             <div className='container students'>
                 <div className="row">
                     <div className="col-12">

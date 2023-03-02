@@ -7,7 +7,7 @@ main{
     width: 100%;
 }
 .sidebar{
-    background-color: #272727;
+    background-color: #004e9b;
     color: white;
     height: 100;
     width: 300px;
@@ -42,12 +42,12 @@ main{
 }
 
 .link:hover{
-    background-color: #0F0F0F;
+    background-color: #003061;
     color: rgb(255, 255, 255);
     transition: all 0.5s;
 }
 .active{
-    background-color: #0F0F0F;
+    background-color: #003061;
     color: rgb(255, 255, 255);
 }
 

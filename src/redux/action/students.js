@@ -1,8 +1,8 @@
-import { CURRENT_DIET_SUCCESS, SWAP_FOOD_SUCCESS } from "./type";
+import { CURRENT_DIET_SUCCESS, GET_CURRENT_DIET_SUCCESS, SWAP_FOOD_SUCCESS, GET_CURRENT_DIET_LOCAL_SUCCESS } from "./type";
 
 import { updateSpineer } from "./Spineer";
 import { Diet } from "./Diet";
-const food = [];
+const food =  [];
 var removeByAttr = function (arr, attr, value) {
     var i = arr.length;
     while (i--) {
@@ -15,6 +15,21 @@ var removeByAttr = function (arr, attr, value) {
         }
     }
     return arr;
+}
+export const getCurrentDiet = () => (dispatch) => {
+    const data = JSON.parse(localStorage.getItem('currentDiets'));
+    dispatch({
+        type:GET_CURRENT_DIET_SUCCESS,
+        payload:data
+    })
+}
+export const getCurrentDietFromLocal = () => (dispatch) => {
+    const data = JSON.parse(localStorage.getItem('currentDiets'));
+   
+    dispatch({
+        type:GET_CURRENT_DIET_LOCAL_SUCCESS,
+        payload:data
+    })
 }
 export const AddData = (inputs) => (dispatch) => {
    

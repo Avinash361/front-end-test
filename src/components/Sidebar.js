@@ -25,13 +25,7 @@ function Sidebar({children}) {
   return (
     <div className='sidebar_container'>
     <div  style={{width: isOpen ? "300px" : "70px"}} className="sidebar">
-        <div className="top_section">
-            {/* <div style={{display: isOpen ? "block" : "none"}} className="logo"><img src="/image/aatmnirbhar_logo.png" alt="" /></div> */}
-            <div style={{marginLeft: isOpen ? "70px" : "0px"}} className="bars">
-                <i className="fa fa-bars" onClick={toggle}></i>
-
-            </div>
-        </div>
+      
         {
             menuItem.map((item, index)=>(
                 <NavLink to={item.path} key={index} className="link" activeclassname="active">

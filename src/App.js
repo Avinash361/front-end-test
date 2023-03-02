@@ -1,5 +1,5 @@
 import './App.css'
-import Login from './components/Login'
+import Login from '../src/pages/Login/Login'
 import Dashboard from "./pages/Dashboard";
 import AuthRouteWrapper from '../src/route_Component/AuthRouteWrapper'
 import Students from './pages/Students/Students';

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 
 store.subscribe(()=> console.log("all states : ",store.getState()));
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// localStorage.setItem("currentDiets", JSON.stringify([]));
 root.render(
     <Provider store={store}>
     <App />

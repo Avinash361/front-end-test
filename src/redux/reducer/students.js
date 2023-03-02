@@ -1,4 +1,4 @@
-import { STUDENT_TABLE_FAIL, CURRENT_DIET_SUCCESS, SWAP_FOOD_SUCCESS } from "../action/type";
+import { CURRENT_DIET_SUCCESS, GET_CURRENT_DIET_SUCCESS, SWAP_FOOD_SUCCESS } from "../action/type";
 import { Diet } from "../action/Diet";
 
 const initialState = {
@@ -11,20 +11,22 @@ export default function (state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
-        case CURRENT_DIET_SUCCESS:
+        case GET_CURRENT_DIET_SUCCESS:
             return {
                 ...state,
-                currentDiets: payload,
+                currentDiets: payload
+            }
+        case CURRENT_DIET_SUCCESS:
+            localStorage.setItem("currentDiets", JSON.stringify(payload));
+            return {
+                ...state,
             };
         case SWAP_FOOD_SUCCESS:
             return {
                 ...state,
                 swapfood: payload,
             };
-        case STUDENT_TABLE_FAIL:
-            return {
-                ...state,
-            };
+
         default:
             return state;
     }
