@@ -9,17 +9,17 @@ function Sidebar({children}) {
         {
             path:"/",
             name:"Home",
-            icon:<img src="image/home.png" alt="" />,
+            icon:<img src="./image/home.png" alt="" />,
         },
         {
             path:"/studentsdata",
             name:"Patient Diet",
-            icon:<img src="image/studentsdata.png" alt="" />,
+            icon:<img src="./image/studentsdata.png" alt="" />,
         },
         {
             path:"/logout",
             name:"Logout",
-            icon:<img src="image/appsetting.png" alt="" />,
+            icon:<img src="./image/appsetting.png" alt="" />,
         },
     ]
   return (

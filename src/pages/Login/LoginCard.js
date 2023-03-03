@@ -62,7 +62,7 @@ export default function LoginCard(props) {
         <Card sx={{ maxWidth: 395, px:4, py:3 }}>
             <div className="py-4">
                 <div className="mb-4" >
-                    <img src="/image/aatmnirbhar_logo.png" alt="logo" />
+                    <img src="./image/aatmnirbhar_logo.png" alt="logo" />
                     <p className='text-center mt-2'>Login into your account</p>
                 </div>
                 <div className="position-relative mt-3 form-input ">

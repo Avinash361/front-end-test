@@ -7,7 +7,7 @@ function Topbar() {
             <div className="topnav">
                 <div className='admin row'>
                     <div className='col'>
-                        <img src="/image/AdminLogo.jpg" alt="admin" />
+                        <img src="./image/AdminLogo.jpg" alt="admin" />
                     </div>
                     <div className='col'>
                         <span className='text1'>Welcome</span><br />

@@ -5,7 +5,7 @@ import AuthRouteWrapper from '../src/route_Component/AuthRouteWrapper'
 import Students from './pages/Students/Students';
 
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -17,7 +17,7 @@ import Logout from './components/Logout';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<AuthRouteWrapper />}>
             <Route  element={<Dashboard />} >
@@ -29,7 +29,8 @@ function App() {
           </Route>
           <Route path='/login' element={<Login />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
+    
     </>
 
 
